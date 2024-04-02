@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>
+    <title>loading</title>
+</head>
+
+<body>
+    <a id="j"></a>
+    <script>
+        const url = window.location.search;
+        const theRequest = new Object();
+        if (url.indexOf('?') != -1) {
+
+            let str = url.substr(url.indexOf('?') + 1);
+            str = str.replace(/&amp;/g, '&');
+            let strs = str.split('&');
+            for (let i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split('=')[0]] = decodeURI(strs[i].split('=')[1]);
+            }
+            if (typeof theRequest.u !== 'undefined' && theRequest.u !== null && theRequest.u !== '') {
+                document.getElementById('j').target = '_top'
+                document.getElementById('j').href = decodeURIComponent(theRequest.u);
+                document.getElementById('j').click();
+            } else {
+                alert('no!');
+            }
+        }
+    </script>
+</body>
